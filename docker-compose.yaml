@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
+    depends_on:
+      - database
+    container_name: todo-app-web
+    environment:
+      - 'DB_PORT=3306'
+      - 'DB_HOST=database'
+
+  database:
+    image: mysql:latest
+    environment:
+      MYSQL_USER: root
+      MYSQL_DATABASE: todo-app
+    container_name: todo-app-db
+    ports:
+      - 3306:3306
+    volumes:
+      - todo-app-data:/var/lib/mysql 
+
+# persisted storage
+volumes:
+  todo-app-data:
