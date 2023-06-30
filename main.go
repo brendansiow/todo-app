@@ -1,19 +1,17 @@
 package main
 
 import (
-	"database/sql"
-	"net/http"
-
+	"github.com/brendansiow/todo-app/apis"
+	"github.com/brendansiow/todo-app/core"
 	"github.com/gin-gonic/gin"
-	_ "github.com/go-sql-driver/mysql"
 )
 
-var db *sql.DB
+func init() {
+	core.Initialize()
+}
 
 func main() {
-	router := gin.Default() //new gin router initialization
-	router.GET("/", func(context *gin.Context) {
-		context.JSON(http.StatusOK, gin.H{"data": "Hello World!"})
-	}) // first endpoint returns Hello World
-	router.Run(":8080") //running application, Default port is 8080
+	router := gin.Default()
+	apis.BindTodoApi(router)
+	router.Run()
 }
