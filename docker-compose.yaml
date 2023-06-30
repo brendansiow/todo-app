@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   web:
@@ -17,16 +17,17 @@ services:
       - 'DB_HOST=database'
 
   database:
-    image: mysql:latest
-    environment:
-      MYSQL_USER: root
-      MYSQL_DATABASE: todo-app
     container_name: todo-app-db
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=todo-app
+      - POSTGRES_PASSWORD=root
     ports:
-      - 3306:3306
+      - '5432:5432'
     volumes:
-      - todo-app-data:/var/lib/mysql 
+      - db:/var/lib/postgresql/data
 
-# persisted storage
 volumes:
-  todo-app-data:
+  db:
+    driver: local
