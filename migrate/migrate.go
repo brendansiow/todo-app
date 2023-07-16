@@ -6,6 +6,7 @@ import (
 )
 
 func init() {
+	core.Migration = true
 	core.Initialize()
 }
 

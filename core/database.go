@@ -9,10 +9,18 @@ import (
 )
 
 var DB *gorm.DB
+var Migration bool
 
 func connectToDatabase() {
 	var err error
-	dsn := os.Getenv("DB_URL")
+	var dsn string
+
+	if Migration {
+		dsn = os.Getenv("LOCALHOST_DB_URL")
+	} else {
+		dsn = os.Getenv("DB_URL")
+	}
+
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
