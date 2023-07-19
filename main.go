@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/brendansiow/todo-app/apis"
 	"github.com/brendansiow/todo-app/core"
+	"github.com/brendansiow/todo-app/middlewares"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,6 +13,15 @@ func init() {
 
 func main() {
 	router := gin.Default()
-	apis.BindTodoApi(router)
+
+	//Public API Endpoints
+	public := router.Group("/")
+	apis.BindLoginApi(public)
+
+	//Protected API Endpoints
+	protected := router.Group("/")
+	protected.Use(middlewares.JwtAuthMiddleware)
+	apis.BindTodoApi(protected)
+
 	router.Run()
 }

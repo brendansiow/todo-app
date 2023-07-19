@@ -13,14 +13,16 @@ services:
       - database
     container_name: todo-app-web
     environment:
-      - 'DB_PORT=3306'
-      - 'DB_HOST=database'
+      - TZ=Asia/Shanghai
+      - DB_PORT=3306
+      - DB_HOST=database
 
   database:
     container_name: todo-app-db
     image: postgres:latest
     restart: always
     environment:
+      - TZ=Asia/Shanghai
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
     ports:

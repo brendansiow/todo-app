@@ -11,5 +11,5 @@ func init() {
 }
 
 func main() {
-	core.DB.AutoMigrate(&models.Todo{})
+	core.DB.AutoMigrate(&models.Todo{}, &models.GithubUser{}, &models.User{})
 }

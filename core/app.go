@@ -2,6 +2,7 @@ package core
 
 import (
 	"log"
+	"time"
 
 	"github.com/joho/godotenv"
 )
@@ -9,6 +10,7 @@ import (
 func Initialize() {
 	loadEnvFile()
 	connectToDatabase()
+	setTimeZone()
 }
 
 func loadEnvFile() {
@@ -16,4 +18,8 @@ func loadEnvFile() {
 	if err != nil {
 		log.Fatal("Error loading dot env file")
 	}
+}
+
+func setTimeZone() {
+	time.LoadLocation("Asia/Malaysia")
 }

@@ -1,13 +1,17 @@
 # todo-app
 Todo app API built with Go
 
-Run with Docker Compose
+1. Run with Docker Compose
 
     docker-compose build 
     docker-compose up
 
-Create Database -> todo_app
+2. Create Database -> todo_app
 
-Seed Database
+3. Seed Database
 
     go run ./migrate/migrate.go
+
+4. Restart services
+
+5. Access APIs from localhost:8080
