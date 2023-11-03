@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/brendansiow/todo-app/apis"
-	"github.com/brendansiow/todo-app/core"
+	// "github.com/brendansiow/todo-app/core"
 	"github.com/brendansiow/todo-app/middlewares"
 	"github.com/gin-gonic/gin"
 )
