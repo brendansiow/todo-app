@@ -8,7 +8,7 @@ import (
 )
 
 func init() {
-	core.Initialize()
+	// core.Initialize()
 }
 
 func main() {
